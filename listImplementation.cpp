@@ -34,21 +34,8 @@ public:
 	}
 	List filterByCountry(string oneCountry);
 	List countByCountry();
-	void delete_position(int pos);
 };
 
-void List::delete_position(int pos)
-{
-	Node* current = new Node;
-	Node* previous = new Node;
-	current = head;
-	for (int i = 1; i < pos; i++)
-	{
-		previous = current;
-		current = current->next;
-	}
-	previous->next = current->next;
-}
 
 
 void List::add(string fName, string lName, int nYear, string fCountry) {
@@ -124,7 +111,6 @@ List List::countByCountry() {
 		
 		
 		if (pom2->next != NULL) {
-				delete_position(0);
 				pom2 = pom2->next;
 				pom = head;
 				licznik = 0;
