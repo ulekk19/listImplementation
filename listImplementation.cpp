@@ -32,7 +32,8 @@ public:
 		this->head = NULL;
 		length = 0;
 	}
-	void filterByCountry(int oneCountry);
+	List filterByCountry(string oneCountry);
+	List countByCountry();
 };
 
 void List::add(string fName, string lName, int nYear, string fCountry) {
@@ -68,19 +69,50 @@ void List::display() {
 	}
 }
 
-void List::filterByCountry(int oneCountry) {
+List List::filterByCountry(string oneCountry) {
 	List newList;
 	Node* pom = head;
-	for (int i = 0; i < length; i++) {
-		if (pom->year == oneCountry) {
-			cout << "Dodano element" << endl;
+	while(pom!=NULL) {
+		if (pom->country == oneCountry) {
 			newList.add(pom->firstName, pom->lastName, pom->year, pom->country);
 		}
+		pom = pom->next;
+	}
+	return newList;
+}
+
+List List::countByCountry() {
+	List newList;
+	Node* pom = head;
+	Node* pom2 = head;
+	int licznik = 0;
+	while (pom != NULL) {
+		// pierwsza petla, bierzemy element do ktorego bedziemy porownywac
+		string temp = pom2->country;
+		while (pom != NULL) {
+			//porownujemy element z pierwszej petli ze wszystkimi el, listy
+			
+			if (temp == pom->country) {
+				licznik++;
+				
+			}
+			
+			pom = pom->next;
+		}
+		
+		newList.add(pom2->country, "", licznik, "");
+		cout << pom2->country << " ma " << licznik << " nagrod" << endl;
+		if (pom2->next != NULL) {
+				pom2 = pom2->next;
+				pom = head;
+				licznik = 0;
+		}
 		else {
-			cout << "Cos poszlo nie tak" << endl;
+			break;
 		}
 	}
-	//return newList;
+	return newList;
+	
 }
 
 int main()
@@ -117,8 +149,8 @@ int main()
 		file.close();
 
 	}
-	list.filterByCountry(1904);
-	//cout << "Dlugosc listy: " << list.length << endl;
+	list.countByCountry().display();
+	//list.filterByCountry("Norwegia").display();
 	//list.display();
 	//system("pause");
 	return 0;

@@ -28,7 +28,7 @@ Henri,Bergson,1927,Francja
 Sigrid,Undset,1928,Norwegia
 Thomas,Mann,1929,Niemcy
 Sinclair,Lewis,1930,USA
-ErikAxel,Karlfeldt,1931,Szwecja
+Erik Axel,Karlfeldt,1931,Szwecja
 John,Galsworthy,1932,Wielka Brytania
 Iwan,Bunin,1933,Rosja
 Luigi,Pirandello,1934,Wlochy
