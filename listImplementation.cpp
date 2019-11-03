@@ -101,22 +101,30 @@ List List::countByCountry() {
 	Node* pom = head;
 	Node* pom2 = head;
 	int licznik = 0;
+	int iloscDodanych = 0;
+	
 	while (pom != NULL) {
-		// pierwsza petla, bierzemy element do ktorego bedziemy porownywac
-		string temp = pom2->country;
-		for (int i =0; i<length; i++) {
-			//porownujemy element z pierwszej petli ze wszystkimi el, listy
 
-			if (temp == pom->country) {
-				licznik++;
-				delete_position(i);
+		while (iloscDodanych == 0){
+			// pierwsza petla, bierzemy element do ktorego bedziemy porownywac
+			string temp = pom2->country;
+			while (pom != NULL) {
+				//porownujemy element z pierwszej petli ze wszystkimi el, listy
+
+				if (temp == pom->country) {
+					licznik++;
+				}
+				pom = pom->next;
+
 			}
-			pom = pom->next;
+			newList.add(pom2->country, "", licznik, "");
+			iloscDodanych = 1;
+			cout << pom2->country << " ma " << licznik << " nagrod" << endl;
 		}
 		
-		newList.add(pom2->country, "", licznik, "");
-		cout << pom2->country << " ma " << licznik << " nagrod" << endl;
+		
 		if (pom2->next != NULL) {
+				delete_position(0);
 				pom2 = pom2->next;
 				pom = head;
 				licznik = 0;
@@ -124,7 +132,9 @@ List List::countByCountry() {
 		else {
 			break;
 		}
+		iloscDodanych = 0;
 	}
+	
 	return newList;
 	
 }
@@ -163,7 +173,7 @@ int main()
 		file.close();
 
 	}
-	list.countByCountry().display();
+	list.countByCountry();
 	//list.filterByCountry("Norwegia").display();
 	//list.display();
 	//system("pause");
