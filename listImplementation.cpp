@@ -34,7 +34,22 @@ public:
 	}
 	List filterByCountry(string oneCountry);
 	List countByCountry();
+	void delete_position(int pos);
 };
+
+void List::delete_position(int pos)
+{
+	Node* current = new Node;
+	Node* previous = new Node;
+	current = head;
+	for (int i = 1; i < pos; i++)
+	{
+		previous = current;
+		current = current->next;
+	}
+	previous->next = current->next;
+}
+
 
 void List::add(string fName, string lName, int nYear, string fCountry) {
 
@@ -89,14 +104,13 @@ List List::countByCountry() {
 	while (pom != NULL) {
 		// pierwsza petla, bierzemy element do ktorego bedziemy porownywac
 		string temp = pom2->country;
-		while (pom != NULL) {
+		for (int i =0; i<length; i++) {
 			//porownujemy element z pierwszej petli ze wszystkimi el, listy
-			
+
 			if (temp == pom->country) {
 				licznik++;
-				
+				delete_position(i);
 			}
-			
 			pom = pom->next;
 		}
 		
